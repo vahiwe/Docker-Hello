@@ -7,7 +7,8 @@ pipeline {
         stage('Install Dependencies') {
               steps {
                   sh """
-                        make install                   
+                        make install
+                        which python3                   
                     """
               }
          }
