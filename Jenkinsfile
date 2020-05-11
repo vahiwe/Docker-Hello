@@ -4,6 +4,7 @@ pipeline {
         stage('Install Dependencies') {
               steps {
                   sh """
+                        make setup
                         make install                   
                     """
               }
