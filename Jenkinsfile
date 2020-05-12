@@ -4,14 +4,7 @@ pipeline {
       PYTHONPATH="/usr/bin/python3"
     }
     stages {
-        stage('Install Dependencies') {
-              steps {
-                  sh """
-                        make install     
-                    """
-              }
-         }
-         stage('Lint Docker and Python file') {
+         stage('Lint Docker') {
               steps {
                   sh 'make lint'
               }
