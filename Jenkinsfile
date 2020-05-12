@@ -1,7 +1,9 @@
 pipeline {
     agent any
     environment {
-      PYTHONPATH="/usr/bin/python3"
+        registry = "vahiwe/udacity"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
     }
     stages {
          stage('Lint Docker') {
@@ -9,5 +11,26 @@ pipeline {
                   sh 'make lint'
               }
          }
+         stage('Building image') {
+            steps{
+                script {
+                    docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }
+        stage('Deploy Image') {
+            steps{
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+        stage('Remove Unused docker image') {
+            steps{
+                sh "docker rmi $registry:$BUILD_NUMBER"
+            }
+        }
     }
 }
