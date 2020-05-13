@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Deploy Kubernetes') {
             steps {
-                sh 'kubectl apply -f ./kubernetes'
+                sh 'aws s3 ls'
             }
         }
     }
