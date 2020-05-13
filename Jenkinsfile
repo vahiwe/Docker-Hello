@@ -32,5 +32,10 @@ pipeline {
                 sh "docker rmi $registry:latest"
             }
         }
+        stage('Deploy Kubernetes') {
+            steps {
+                sh 'kubectl apply -f ./kubernetes'
+            }
+        }
     }
 }
