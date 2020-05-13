@@ -7,6 +7,9 @@ metadata:
 spec:
   strategy:
     type: RollingUpdate
+    rollingUpdate:
+        maxUnavailable: 50%
+        maxSurge: 1
   replicas: 4
   selector:
     matchLabels:
@@ -19,5 +22,20 @@ spec:
       containers:
         - name: devops-capstone
           image: vahiwe/udacity:latest
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "128Mi"
           ports:
             - containerPort: 8000
+          readinessProbe:
+              httpGet:
+                path: /
+                port: 8000
+              periodSeconds: 10
+              timeoutSeconds: 5
+              successThreshold: 1
+              failureThreshold: 10
