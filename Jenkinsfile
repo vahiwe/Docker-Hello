@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        registry = "vahiwe/janto"
+        registry = "vahiwe/udacity"
         registryCredential = 'dockerhub'
         dockerImage = ''
     }
