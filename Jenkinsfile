@@ -42,18 +42,15 @@ pipeline {
         stage('Configure and Build Kubernetes Cluster'){
             steps {
                 withAWS(region:'us-west-2', credentials:'aws') {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        sh 'ansible-playbook ./playbooks/kubernetes-configure.yml'
-                    }
+                    sh 'ansible-playbook ./playbooks/kubernetes-configure.yml'
+                    
                 }
             }
         }
         stage('Deploy Updated Image to Cluster'){
             steps {
                 withAWS(region:'us-west-2', credentials:'aws') {
-                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        sh "sudo kubectl apply -f ./kubernetes --kubeconfig='/home/ubuntu/.kube/config'" // Bad idea but this is a demo and I'm lazy right :)
-                    }
+                    sh "sudo kubectl apply -f ./kubernetes" // Bad idea but this is a demo and I'm lazy right :)
                 }
             }
         }
