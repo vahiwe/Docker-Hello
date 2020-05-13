@@ -52,7 +52,7 @@ pipeline {
             steps {
                 withAWS(region:'us-west-2', credentials:'aws') {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                        sh 'sudo kubectl apply -f ./kubernetes' // Bad idea but this is a demo and I'm lazy right :)
+                        sh "sudo kubectl apply -f ./kubernetes --kubeconfig='~/.kube/config'" // Bad idea but this is a demo and I'm lazy right :)
                     }
                 }
             }
