@@ -18,7 +18,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy Image') {
+        stage('Upload Image to Docker hub') {
             steps{
                 script {
                     docker.withRegistry( '', registryCredential ) {
@@ -34,24 +34,17 @@ pipeline {
         }
         stage('Deploy Kubernetes') {
             steps {
-                withAWS(region:'us-west-2', credentials:'aws') {
-                    sh 'aws s3 ls'
-                }
+                sh 'aws s3 ls'
             }
         }
         stage('Configure and Build Kubernetes Cluster'){
             steps {
-                withAWS(region:'us-west-2', credentials:'aws') {
-                    sh 'ansible-playbook ./playbooks/kubernetes-configure.yml'
-                    
-                }
+                sh 'ansible-playbook ./playbooks/kubernetes-configure.yml'                    
             }
         }
         stage('Deploy Updated Image to Cluster'){
             steps {
-                withAWS(region:'us-west-2', credentials:'aws') {
-                    sh "sudo kubectl apply -f ./kubernetes" // Bad idea but this is a demo and I'm lazy right :)
-                }
+                sh "sudo kubectl apply -f ./kubernetes"
             }
         }
     }
