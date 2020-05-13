@@ -3,9 +3,7 @@ kind: Service
 metadata:
   name: devops-capstone-lb
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: udacity.project.vahiwe.com
-  labels:
-    app: devops-capstone
+    external-dns.alpha.kubernetes.io/hostname: test.project.vahiwe.com
 spec:
   type: LoadBalancer
   selector:
