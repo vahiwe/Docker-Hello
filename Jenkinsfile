@@ -1,12 +1,12 @@
 pipeline {
     agent any
     environment {
-        registry = "vahiwe/udacity"
+        registry = "vahiwe/janto"
         registryCredential = 'dockerhub'
         dockerImage = ''
     }
     stages {
-         stage('Lint Docker') {
+         stage('Lint files') {
               steps {
                   sh 'make lint'
               }
