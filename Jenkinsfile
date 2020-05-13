@@ -33,8 +33,8 @@ pipeline {
             }
         }
         stage('Deploy Kubernetes') {
-            withAWS(region:'us-west-2',credentials:'aws') {
-                steps {
+            steps {
+                withAWS(region:'us-west-2', credentials:'aws') {
                     sh 'aws s3 ls'
                 }
             }
