@@ -23,8 +23,8 @@ pipeline {
         stage('test environment switch') {
               steps {
                   sh '''
-                        sed -ie "s/THIS_STRING_IS_REPLACED_DURING_BUILD/$(date)/g" kubernetes/container.yml
-                        cat kubernetes/container.yml
+                        export IMAGE="$registry:$BUILD_NUMBER"
+                        sed -ie "s~IMAGE~$IMAGE~g" kubernetes/container.yml
                     '''
               }
          }
