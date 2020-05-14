@@ -24,6 +24,7 @@ pipeline {
               steps {
                   sh '''
                         sed -ie "s/THIS_STRING_IS_REPLACED_DURING_BUILD/$(date)/g" kubernetes/container.yml
+                        cat kubernetes/container.yml
                     '''
               }
          }
