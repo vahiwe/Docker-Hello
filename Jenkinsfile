@@ -17,7 +17,7 @@ pipeline {
               steps {
                   sh '''
                         export IMAGE="$registry:$BUILD_NUMBER"
-                        envsubst < kubernetes/container.yml | cat kubernetes/container.yml
+                        envsubst < kubernetes/deployment.yaml | cat
                     '''
               }
          }
