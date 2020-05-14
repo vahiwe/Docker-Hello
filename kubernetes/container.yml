@@ -22,7 +22,7 @@ spec:
       containers:
         - name: devops-capstone
           imagePullPolicy: Always
-          image: IMAGE
+          image: {{IMAGE}}
           resources:
             requests:
               cpu: "50m"
