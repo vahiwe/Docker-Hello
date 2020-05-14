@@ -24,7 +24,7 @@ pipeline {
               steps {
                   sh '''
                         export IMAGE="$registry:$BUILD_NUMBER"
-                        export VALUE=$(echo ${IMAGE} | sed -e "s#/#\\\/#g")
+                        export VALUE=$(echo ${IMAGE} | sed -e 's/\//\\\//g')
                         sed -ie "s/IMAGE/$VALUE/g" kubernetes/container.yml
                     '''
               }
