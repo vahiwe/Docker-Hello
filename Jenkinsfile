@@ -13,7 +13,7 @@ pipeline {
                     '''
               }
          }
-        stage('view file') {
+        stage('show file') {
               steps {
                   sh '''
                         cat kubernetes/container.yml
