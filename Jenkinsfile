@@ -13,6 +13,13 @@ pipeline {
                     '''
               }
          }
+        stage('view file') {
+              steps {
+                  sh '''
+                        cat kubernetes/container.yml
+                    '''
+              }
+        }
         stage('test environment switch') {
               steps {
                   sh '''
