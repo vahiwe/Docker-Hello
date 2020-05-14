@@ -22,7 +22,7 @@ spec:
       containers:
         - name: devops-capstone
           imagePullPolicy: Always
-          image: vahiwe/udacity:latest
+          image: ${IMAGE}
           resources:
             requests:
               cpu: "50m"
