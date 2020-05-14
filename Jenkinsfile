@@ -24,7 +24,7 @@ pipeline {
               steps {
                   sh '''
                         export IMAGE="$registry:$BUILD_NUMBER"
-                        envsubst < kubernetes/container.yml  > kubernetes/container.yml
+                        sed -ie "s/IMAGE/$(IMAGE)/g" kubernetes/container.yml
                     '''
               }
          }
